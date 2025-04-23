@@ -27,7 +27,7 @@ class CalcPage extends StatelessWidget {
           )),
         ],
       ),
-      // ✅ Let theme handle background color
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -38,7 +38,6 @@ class CalcPage extends StatelessWidget {
               DisplayWidget(),
               const SizedBox(height: 12),
 
-              // Row 1
               Row(
                 children: [
                   Expanded(child: buildButton('7', Colors.grey, () => controller.onButtonPressed('7'))),
@@ -47,7 +46,7 @@ class CalcPage extends StatelessWidget {
                   Expanded(child: buildButton('÷', Colors.orange, () => controller.onButtonPressed('÷'))),
                 ],
               ),
-              // Row 2
+
               Row(
                 children: [
                   Expanded(child: buildButton('4', Colors.grey, () => controller.onButtonPressed('4'))),
@@ -56,7 +55,7 @@ class CalcPage extends StatelessWidget {
                   Expanded(child: buildButton('×', Colors.orange, () => controller.onButtonPressed('×'))),
                 ],
               ),
-              // Row 3
+
               Row(
                 children: [
                   Expanded(child: buildButton('1', Colors.grey, () => controller.onButtonPressed('1'))),
@@ -65,7 +64,6 @@ class CalcPage extends StatelessWidget {
                   Expanded(child: buildButton('-', Colors.orange, () => controller.onButtonPressed('-'))),
                 ],
               ),
-              // Row 4
               Row(
                 children: [
                   Expanded(child: buildButton('C', Colors.grey, () => controller.onButtonPressed('C'))),

@@ -15,7 +15,7 @@ Widget buildButton(String buttonText, Color buttonColor, VoidCallback onPressed)
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: EdgeInsets.zero, // prevent extra internal padding
+          padding: EdgeInsets.zero,
         ),
         child: Center(
           child: Text(

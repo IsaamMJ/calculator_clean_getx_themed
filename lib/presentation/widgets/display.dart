@@ -10,7 +10,7 @@ class DisplayWidget extends StatelessWidget {
     final controller = Get.find<CalcController>();
 
     return Container(
-      margin: const EdgeInsets.all(6), // Optional: adds spacing around the display
+      margin: const EdgeInsets.all(6),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.grey,
