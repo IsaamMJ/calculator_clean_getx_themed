@@ -5,7 +5,7 @@ import 'package:calcapp/routes/app_routes.dart';
 import 'controller/theme_controller.dart';
 
 void main() {
-  Get.put(ThemeController()); // Inject theme controller
+  Get.put(ThemeController());
   runApp(const MyApp());
 }
 
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final themeCtrl = Get.find<ThemeController>();
 
     return Obx(() => GetMaterialApp(

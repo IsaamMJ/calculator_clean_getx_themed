@@ -23,12 +23,19 @@ class DisplayWidget extends StatelessWidget {
           Obx(() => Text(
             controller.expression.value,
             style: const TextStyle(fontSize: 32, color: Colors.white70),
+            maxLines: 1,
+            // softWrap: true,
+            overflow: TextOverflow.visible,
           )),
           const SizedBox(height: 8),
           Obx(() => Text(
             controller.result.value,
             style: const TextStyle(fontSize: 48, color: Colors.white),
+            maxLines: 1,
+            // softWrap: true,
+            overflow: TextOverflow.visible,
           )),
+
         ],
       ),
     );
