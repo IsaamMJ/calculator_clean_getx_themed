@@ -137,7 +137,7 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 * Flutter Devs Community
 * The GetX package maintainers
-* Clean Architecture resources by Uncle Bob
+* Clean Architecture resources 
 
 ```
 
