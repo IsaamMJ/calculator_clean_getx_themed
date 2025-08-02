@@ -90,25 +90,25 @@ How GetX fits into each layer:
 ### 🚚 Installation
 
 1. Clone the repository:
-   ```bash
+
    git clone https://github.com/yourusername/calc_app.git
-````
+
 
 2. Navigate to the project directory:
 
-   ```bash
+
    cd calc_app
-   ```
+
 3. Install dependencies:
 
-   ```bash
+
    flutter pub get
-   ```
+
 4. Run the app:
 
-   ```bash
+
    flutter run
-   ```
+
 
 ---
 ## 🧩 Screenshots
