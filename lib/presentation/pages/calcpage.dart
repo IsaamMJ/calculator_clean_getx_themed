@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:calcapp/presentation/widgets/display.dart';
-import '../widgets/button.dart';
 import 'package:get/get.dart';
-import '../../controller/calcpage_controller.dart';
+import 'package:calcapp/controller/calcpage_controller.dart';
 import 'package:calcapp/controller/theme_controller.dart';
+import '../widgets/button.dart';
+import '../widgets/display.dart';
 
 class CalcPage extends StatelessWidget {
   const CalcPage({super.key});
@@ -12,6 +12,7 @@ class CalcPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<CalcController>();
     final themeCtrl = Get.find<ThemeController>();
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,69 +28,103 @@ class CalcPage extends StatelessWidget {
           )),
         ],
       ),
-
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: isPortrait
+            ? _buildPortraitLayout(controller)
+            : _buildLandscapeLayout(controller),
+      ),
+    );
+  }
+
+  Widget _buildPortraitLayout(CalcController controller) {
+    return Column(
+      children: [
+        const SizedBox(height: 12),
+        const DisplayWidget(),
+        const SizedBox(height: 12),
+        Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const SizedBox(height: 12),
-              DisplayWidget(),
-              const SizedBox(height: 12),
-
-              Row(
-                children: [
-                  Expanded(child: buildButton('7', Colors.grey, () => controller.onButtonPressed('7'))),
-                  Expanded(child: buildButton('8', Colors.grey, () => controller.onButtonPressed('8'))),
-                  Expanded(child: buildButton('9', Colors.grey, () => controller.onButtonPressed('9'))),
-                  Expanded(child: buildButton('÷', Colors.orange, () => controller.onButtonPressed('÷'))),
-                ],
-              ),
-
-              Row(
-                children: [
-                  Expanded(child: buildButton('4', Colors.grey, () => controller.onButtonPressed('4'))),
-                  Expanded(child: buildButton('5', Colors.grey, () => controller.onButtonPressed('5'))),
-                  Expanded(child: buildButton('6', Colors.grey, () => controller.onButtonPressed('6'))),
-                  Expanded(child: buildButton('×', Colors.orange, () => controller.onButtonPressed('×'))),
-                ],
-              ),
-
-              Row(
-                children: [
-                  Expanded(child: buildButton('1', Colors.grey, () => controller.onButtonPressed('1'))),
-                  Expanded(child: buildButton('2', Colors.grey, () => controller.onButtonPressed('2'))),
-                  Expanded(child: buildButton('3', Colors.grey, () => controller.onButtonPressed('3'))),
-                  Expanded(child: buildButton('-', Colors.orange, () => controller.onButtonPressed('-'))),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(child: buildButton('C', Colors.grey, () => controller.onButtonPressed('C'))),
-                  Expanded(child: buildButton('0', Colors.grey, () => controller.onButtonPressed('0'))),
-                  Expanded(child: buildButton('.', Colors.grey, () => controller.onButtonPressed('.'))),
-                  Expanded(child: buildButton('+', Colors.orange, () => controller.onButtonPressed('+'))),
-                ],
-              ),
-
+              _buildButtonRow(controller, ['7', '8', '9', '÷']),
+              _buildButtonRow(controller, ['4', '5', '6', '×']),
+              _buildButtonRow(controller, ['1', '2', '3', '-']),
+              _buildButtonRow(controller, ['C', '0', '.', '+']),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: buildButton('=', Colors.deepOrange, () => controller.onButtonPressed('=')),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: buildButton('⌫', Colors.orange, () => controller.onButtonPressed('⌫')),
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: buildButton('=', Colors.deepOrange, () => controller.onButtonPressed('=')),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: buildButton('⌫', Colors.orange, () => controller.onButtonPressed('⌫')),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16),
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildLandscapeLayout(CalcController controller) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const DisplayWidget(),
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Column(
+            children: [
+              Expanded(child: _buildButtonRow(controller, ['7', '8', '9', '÷'])),
+              Expanded(child: _buildButtonRow(controller, ['4', '5', '6', '×'])),
+              Expanded(child: _buildButtonRow(controller, ['1', '2', '3', '-'])),
+              Expanded(child: _buildButtonRow(controller, ['C', '0', '.', '+'])),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: buildButton('=', Colors.deepOrange, () => controller.onButtonPressed('=')),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: buildButton('⌫', Colors.orange, () => controller.onButtonPressed('⌫')),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButtonRow(CalcController controller, List<String> buttons) {
+    return Expanded(
+      child: Row(
+        children: buttons.map((text) {
+          Color color = (text == '+' || text == '-' || text == '×' || text == '÷')
+              ? Colors.orange
+              : Colors.grey;
+          if (text == 'C') color = Colors.grey;
+          if (text == '=') color = Colors.deepOrange;
+          if (text == '⌫') color = Colors.orange;
+
+          return Expanded(
+            child: buildButton(text, color, () => controller.onButtonPressed(text)),
+          );
+        }).toList(),
       ),
     );
   }

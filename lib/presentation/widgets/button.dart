@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 Widget buildButton(String buttonText, Color buttonColor, VoidCallback onPressed) {
   return Container(
     margin: const EdgeInsets.all(6),
-    child: SizedBox(
-      width: 80,
-      height: 80,
+    child: AspectRatio(
+      aspectRatio: 1,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
