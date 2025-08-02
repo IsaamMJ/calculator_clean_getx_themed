@@ -112,11 +112,12 @@ How GetX fits into each layer:
 
 ---
 ## 🧩 Screenshots
-![Screenshot_2025-08-02-09-39-35-516_com.android.settings.jpg](screenshot/Screenshot_2025-08-02-09-39-35-516_com.android.settings.jpg)
-![Screenshot_2025-08-02-09-39-45-893_com.example.calcapp.jpg](screenshot/Screenshot_2025-08-02-09-39-45-893_com.example.calcapp.jpg)
-![Screenshot_2025-08-02-09-39-53-748_com.example.calcapp.jpg](screenshot/Screenshot_2025-08-02-09-39-53-748_com.example.calcapp.jpg)
-![Screenshot_2025-08-02-09-40-01-817_com.example.calcapp.jpg](screenshot/Screenshot_2025-08-02-09-40-01-817_com.example.calcapp.jpg)
 
+<p float="left">
+  <img src="screenshot/Screenshot_2025-08-02-09-39-45-893_com.example.calcapp.jpg" width="200" />
+  <img src="screenshot/Screenshot_2025-08-02-09-39-53-748_com.example.calcapp.jpg" width="200" />
+  <img src="screenshot/Screenshot_2025-08-02-09-40-01-817_com.example.calcapp.jpg" width="200" />
+</p>
 
 ## 🧩 Coming Soon
 
